@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 export default async function handler(req, res) {
   // Health check
   if (req.method === "GET") {
-    return res.status(200).json({ message: "Server is running ✅" });
+    return res.status(200).json({ message: "Server is runnings ✅" });
   }
 
   // POST routes
