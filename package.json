@@ -1,0 +1,10 @@
+{
+  "name": "sendmail-server",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "nodemailer": "^6.9.8",
+    "dotenv": "^16.0.3",
+    "cors": "^2.8.5"
+  }
+}
